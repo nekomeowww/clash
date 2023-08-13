@@ -6,6 +6,9 @@ import (
 	C "github.com/Dreamacro/clash/constant"
 )
 
+// Implements C.Rule
+var _ C.Rule = (*DomainKeyword)(nil)
+
 type DomainKeyword struct {
 	keyword string
 	adapter string
@@ -13,6 +16,10 @@ type DomainKeyword struct {
 
 func (dk *DomainKeyword) RuleType() C.RuleType {
 	return C.DomainKeyword
+}
+
+func (dk *DomainKeyword) RuleTypeString() C.RuleTypeString {
+	return C.DomainKeywordString
 }
 
 func (dk *DomainKeyword) Match(metadata *C.Metadata) bool {

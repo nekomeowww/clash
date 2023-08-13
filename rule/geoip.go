@@ -7,6 +7,9 @@ import (
 	C "github.com/Dreamacro/clash/constant"
 )
 
+// Implements C.Rule
+var _ C.Rule = (*GEOIP)(nil)
+
 type GEOIP struct {
 	country     string
 	adapter     string
@@ -15,6 +18,10 @@ type GEOIP struct {
 
 func (g *GEOIP) RuleType() C.RuleType {
 	return C.GEOIP
+}
+
+func (g *GEOIP) RuleTypeString() C.RuleTypeString {
+	return C.GEOIPString
 }
 
 func (g *GEOIP) Match(metadata *C.Metadata) bool {

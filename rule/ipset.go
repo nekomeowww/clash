@@ -6,6 +6,9 @@ import (
 	"github.com/Dreamacro/clash/log"
 )
 
+// Implements C.Rule
+var _ C.Rule = (*IPSet)(nil)
+
 type IPSet struct {
 	name        string
 	adapter     string
@@ -14,6 +17,10 @@ type IPSet struct {
 
 func (f *IPSet) RuleType() C.RuleType {
 	return C.IPSet
+}
+
+func (f *IPSet) RuleTypeString() C.RuleTypeString {
+	return C.IPSetString
 }
 
 func (f *IPSet) Match(metadata *C.Metadata) bool {

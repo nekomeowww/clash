@@ -20,6 +20,9 @@ func WithIPCIDRNoResolve(noResolve bool) IPCIDROption {
 	}
 }
 
+// Implements C.Rule
+var _ C.Rule = (*IPCIDR)(nil)
+
 type IPCIDR struct {
 	ipnet       *net.IPNet
 	adapter     string
@@ -32,6 +35,13 @@ func (i *IPCIDR) RuleType() C.RuleType {
 		return C.SrcIPCIDR
 	}
 	return C.IPCIDR
+}
+
+func (i *IPCIDR) RuleTypeString() C.RuleTypeString {
+	if i.isSourceIP {
+		return C.SrcIPCIDRString
+	}
+	return C.IPCIDRString
 }
 
 func (i *IPCIDR) Match(metadata *C.Metadata) bool {

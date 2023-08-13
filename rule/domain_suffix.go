@@ -6,6 +6,9 @@ import (
 	C "github.com/Dreamacro/clash/constant"
 )
 
+// Implements C.Rule
+var _ C.Rule = (*DomainSuffix)(nil)
+
 type DomainSuffix struct {
 	suffix  string
 	adapter string
@@ -13,6 +16,10 @@ type DomainSuffix struct {
 
 func (ds *DomainSuffix) RuleType() C.RuleType {
 	return C.DomainSuffix
+}
+
+func (ds *DomainSuffix) RuleTypeString() C.RuleTypeString {
+	return C.DomainSuffixString
 }
 
 func (ds *DomainSuffix) Match(metadata *C.Metadata) bool {

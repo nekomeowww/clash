@@ -160,7 +160,7 @@ func resolveMetadata(ctx C.PlainContext, metadata *C.Metadata) (proxy C.Proxy, r
 		return
 	}
 
-	switch mode {
+	switch mode { //nolint:exhaustive
 	case Direct:
 		proxy = proxies["DIRECT"]
 	case Global:

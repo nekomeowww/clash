@@ -4,12 +4,19 @@ import (
 	C "github.com/Dreamacro/clash/constant"
 )
 
+// Implements C.Rule
+var _ C.Rule = (*Match)(nil)
+
 type Match struct {
 	adapter string
 }
 
 func (f *Match) RuleType() C.RuleType {
 	return C.MATCH
+}
+
+func (f *Match) RuleTypeString() C.RuleTypeString {
+	return C.MatchString
 }
 
 func (f *Match) Match(metadata *C.Metadata) bool {

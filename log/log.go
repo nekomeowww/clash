@@ -79,7 +79,7 @@ func print(data Event) {
 		return
 	}
 
-	switch data.LogLevel {
+	switch data.LogLevel { // nolint:exhaustive
 	case INFO:
 		log.Infoln(data.Payload)
 	case WARNING:
