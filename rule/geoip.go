@@ -21,7 +21,7 @@ func (g *GEOIP) RuleType() C.RuleType {
 }
 
 func (g *GEOIP) RuleTypeString() C.RuleTypeString {
-	return C.GEOIPString
+	return C.GeoIPString
 }
 
 func (g *GEOIP) Match(metadata *C.Metadata) bool {

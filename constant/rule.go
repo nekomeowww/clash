@@ -5,7 +5,7 @@ const (
 	DomainString        RuleTypeString = "Domain"
 	DomainSuffixString  RuleTypeString = "DomainSuffix"
 	DomainKeywordString RuleTypeString = "DomainKeyword"
-	GEOIPString         RuleTypeString = "GeoIP"
+	GeoIPString         RuleTypeString = "GeoIP"
 	IPCIDRString        RuleTypeString = "IPCIDR"
 	SrcIPCIDRString     RuleTypeString = "SrcIPCIDR"
 	SrcPortString       RuleTypeString = "SrcPort"
@@ -75,7 +75,7 @@ func (rts RuleType) RuleTypeString() RuleTypeString {
 	case DomainKeyword:
 		return DomainKeywordString
 	case GEOIP:
-		return GEOIPString
+		return GeoIPString
 	case IPCIDR:
 		return IPCIDRString
 	case SrcIPCIDR:
