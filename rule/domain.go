@@ -18,10 +18,6 @@ func (d *Domain) RuleType() C.RuleType {
 	return C.Domain
 }
 
-func (d *Domain) RuleTypeString() C.RuleTypeString {
-	return C.DomainString
-}
-
 func (d *Domain) Match(metadata *C.Metadata) bool {
 	return metadata.Host == d.domain
 }

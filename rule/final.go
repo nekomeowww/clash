@@ -15,10 +15,6 @@ func (f *Match) RuleType() C.RuleType {
 	return C.MATCH
 }
 
-func (f *Match) RuleTypeString() C.RuleTypeString {
-	return C.MatchString
-}
-
 func (f *Match) Match(metadata *C.Metadata) bool {
 	return true
 }

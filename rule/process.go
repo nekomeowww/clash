@@ -24,14 +24,6 @@ func (ps *Process) RuleType() C.RuleType {
 	return C.ProcessPath
 }
 
-func (ps *Process) RuleTypeString() C.RuleTypeString {
-	if ps.nameOnly {
-		return C.ProcessString
-	}
-
-	return C.ProcessPathString
-}
-
 func (ps *Process) Match(metadata *C.Metadata) bool {
 	if ps.nameOnly {
 		return strings.EqualFold(filepath.Base(metadata.ProcessPath), ps.process)

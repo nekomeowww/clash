@@ -1,47 +1,26 @@
 package constant
 
-// Rule Type String
 const (
-	DomainString        RuleTypeString = "Domain"
-	DomainSuffixString  RuleTypeString = "DomainSuffix"
-	DomainKeywordString RuleTypeString = "DomainKeyword"
-	GeoIPString         RuleTypeString = "GeoIP"
-	IPCIDRString        RuleTypeString = "IPCIDR"
-	SrcIPCIDRString     RuleTypeString = "SrcIPCIDR"
-	SrcPortString       RuleTypeString = "SrcPort"
-	DstPortString       RuleTypeString = "DstPort"
-	InboundPortString   RuleTypeString = "InboundPort"
-	ProcessString       RuleTypeString = "Process"
-	ProcessPathString   RuleTypeString = "ProcessPath"
-	IPSetString         RuleTypeString = "IPSet"
-	MatchString         RuleTypeString = "Match"
-	UnknownString       RuleTypeString = "Unknown"
+	DomainTypeString        RuleTypeString = "DOMAIN"
+	DomainSuffixTypeString  RuleTypeString = "DOMAIN-SUFFIX"
+	DomainKeywordTypeString RuleTypeString = "DOMAIN-KEYWORD"
+	GeoIPTypeString         RuleTypeString = "GEOIP"
+	IPCIDRTypeString        RuleTypeString = "IP-CIDR"
+	IPCIDR6TypeString       RuleTypeString = "IP-CIDR6"
+	SrcIPCIDRTypeString     RuleTypeString = "SRC-IP-CIDR"
+	SrcPortTypeString       RuleTypeString = "SRC-PORT"
+	DstPortTypeString       RuleTypeString = "DST-PORT"
+	InboundPortTypeString   RuleTypeString = "INBOUND-PORT"
+	ProcessNameTypeString   RuleTypeString = "PROCESS-NAME"
+	ProcessPathTypeString   RuleTypeString = "PROCESS-PATH"
+	IPSetTypeString         RuleTypeString = "IPSET"
+	RuleSetTypeString       RuleTypeString = "RULE-SET"
+	ScriptTypeString        RuleTypeString = "SCRIPT"
+	MatchTypeString         RuleTypeString = "MATCH"
 )
 
-// Rule Type String represents a rule type, if integrating with configuration files, please use RuleConfigTypeString instead.
+// Rule Config Type String represents a rule type in configuration files.
 type RuleTypeString string
-
-const (
-	DomainConfigTypeString        RuleConfigTypeString = "DOMAIN"
-	DomainSuffixConfigTypeString  RuleConfigTypeString = "DOMAIN-SUFFIX"
-	DomainKeywordConfigTypeString RuleConfigTypeString = "DOMAIN-KEYWORD"
-	GeoIPConfigTypeString         RuleConfigTypeString = "GEOIP"
-	IPCIDRConfigTypeString        RuleConfigTypeString = "IP-CIDR"
-	IPCIDR6ConfigTypeString       RuleConfigTypeString = "IP-CIDR6"
-	SrcIPCIDRConfigTypeString     RuleConfigTypeString = "SRC-IP-CIDR"
-	SrcPortConfigTypeString       RuleConfigTypeString = "SRC-PORT"
-	DstPortConfigTypeString       RuleConfigTypeString = "DST-PORT"
-	InboundPortConfigTypeString   RuleConfigTypeString = "INBOUND-PORT"
-	ProcessNameConfigTypeString   RuleConfigTypeString = "PROCESS-NAME"
-	ProcessPathConfigTypeString   RuleConfigTypeString = "PROCESS-PATH"
-	IPSetConfigTypeString         RuleConfigTypeString = "IPSET"
-	RuleSetConfigTypeString       RuleConfigTypeString = "RULE-SET"
-	ScriptConfigTypeString        RuleConfigTypeString = "SCRIPT"
-	MatchConfigTypeString         RuleConfigTypeString = "MATCH"
-)
-
-// Rule Config Type String represents a rule type in configuration files. Only reference this type instead of RuleTypeString when making integrate and processing with configuration files.
-type RuleConfigTypeString string
 
 // Rule Type
 const (
@@ -63,45 +42,40 @@ const (
 type RuleType int
 
 func (rt RuleType) String() string {
-	return string(rt.RuleTypeString())
-}
-
-func (rts RuleType) RuleTypeString() RuleTypeString {
-	switch rts {
+	switch rt {
 	case Domain:
-		return DomainString
+		return "Domain"
 	case DomainSuffix:
-		return DomainSuffixString
+		return "DomainSuffix"
 	case DomainKeyword:
-		return DomainKeywordString
+		return "DomainKeyword"
 	case GEOIP:
-		return GeoIPString
+		return "GeoIP"
 	case IPCIDR:
-		return IPCIDRString
+		return "IPCIDR"
 	case SrcIPCIDR:
-		return SrcIPCIDRString
+		return "SrcIPCIDR"
 	case SrcPort:
-		return SrcPortString
+		return "SrcPort"
 	case DstPort:
-		return DstPortString
+		return "DstPort"
 	case InboundPort:
-		return InboundPortString
+		return "InboundPort"
 	case Process:
-		return ProcessString
+		return "Process"
 	case ProcessPath:
-		return ProcessPathString
+		return "ProcessPath"
 	case IPSet:
-		return IPSetString
+		return "IPSet"
 	case MATCH:
-		return MatchString
+		return "Match"
 	default:
-		return UnknownString
+		return "Unknown"
 	}
 }
 
 type Rule interface {
 	RuleType() RuleType
-	RuleTypeString() RuleTypeString
 	Match(metadata *Metadata) bool
 	Adapter() string
 	Payload() string

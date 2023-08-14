@@ -18,10 +18,6 @@ func (dk *DomainKeyword) RuleType() C.RuleType {
 	return C.DomainKeyword
 }
 
-func (dk *DomainKeyword) RuleTypeString() C.RuleTypeString {
-	return C.DomainKeywordString
-}
-
 func (dk *DomainKeyword) Match(metadata *C.Metadata) bool {
 	return strings.Contains(metadata.Host, dk.keyword)
 }

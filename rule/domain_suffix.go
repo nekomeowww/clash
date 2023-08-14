@@ -18,10 +18,6 @@ func (ds *DomainSuffix) RuleType() C.RuleType {
 	return C.DomainSuffix
 }
 
-func (ds *DomainSuffix) RuleTypeString() C.RuleTypeString {
-	return C.DomainSuffixString
-}
-
 func (ds *DomainSuffix) Match(metadata *C.Metadata) bool {
 	domain := metadata.Host
 	return strings.HasSuffix(domain, "."+ds.suffix) || domain == ds.suffix

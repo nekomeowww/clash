@@ -19,10 +19,6 @@ func (f *IPSet) RuleType() C.RuleType {
 	return C.IPSet
 }
 
-func (f *IPSet) RuleTypeString() C.RuleTypeString {
-	return C.IPSetString
-}
-
 func (f *IPSet) Match(metadata *C.Metadata) bool {
 	exist, err := ipset.Test(f.name, metadata.DstIP)
 	if err != nil {

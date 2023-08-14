@@ -20,10 +20,6 @@ func (g *GEOIP) RuleType() C.RuleType {
 	return C.GEOIP
 }
 
-func (g *GEOIP) RuleTypeString() C.RuleTypeString {
-	return C.GeoIPString
-}
-
 func (g *GEOIP) Match(metadata *C.Metadata) bool {
 	ip := metadata.DstIP
 	if ip == nil {

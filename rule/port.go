@@ -37,19 +37,6 @@ func (p *Port) RuleType() C.RuleType {
 	}
 }
 
-func (p *Port) RuleTypeString() C.RuleTypeString {
-	switch p.portType {
-	case PortTypeSrc:
-		return C.SrcPortString
-	case PortTypeDest:
-		return C.DstPortString
-	case PortTypeInbound:
-		return C.InboundPortString
-	default:
-		panic(fmt.Errorf("unknown port type: %v", p.portType))
-	}
-}
-
 func (p *Port) Match(metadata *C.Metadata) bool {
 	switch p.portType {
 	case PortTypeSrc:

@@ -37,13 +37,6 @@ func (i *IPCIDR) RuleType() C.RuleType {
 	return C.IPCIDR
 }
 
-func (i *IPCIDR) RuleTypeString() C.RuleTypeString {
-	if i.isSourceIP {
-		return C.SrcIPCIDRString
-	}
-	return C.IPCIDRString
-}
-
 func (i *IPCIDR) Match(metadata *C.Metadata) bool {
 	ip := metadata.DstIP
 	if i.isSourceIP {
