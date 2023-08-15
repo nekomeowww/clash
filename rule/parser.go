@@ -12,39 +12,39 @@ func ParseRule(tp, payload, target string, params []string) (C.Rule, error) {
 		parsed   C.Rule
 	)
 
-	ruleConfigType := C.RuleTypeString(tp)
+	ruleConfigType := C.RuleConfig(tp)
 
 	switch ruleConfigType {
-	case C.DomainTypeString:
+	case C.RuleConfigDomain:
 		parsed = NewDomain(payload, target)
-	case C.DomainSuffixTypeString:
+	case C.RuleConfigDomainSuffix:
 		parsed = NewDomainSuffix(payload, target)
-	case C.DomainKeywordTypeString:
+	case C.RuleConfigDomainKeyword:
 		parsed = NewDomainKeyword(payload, target)
-	case C.GeoIPTypeString:
+	case C.RuleConfigGeoIP:
 		noResolve := HasNoResolve(params)
 		parsed = NewGEOIP(payload, target, noResolve)
-	case C.IPCIDRTypeString, C.IPCIDR6TypeString:
+	case C.RuleConfigIPCIDR, C.RuleConfigIPCIDR6:
 		noResolve := HasNoResolve(params)
 		parsed, parseErr = NewIPCIDR(payload, target, WithIPCIDRNoResolve(noResolve))
-	case C.SrcIPCIDRTypeString:
+	case C.RuleConfigSrcIPCIDR:
 		parsed, parseErr = NewIPCIDR(payload, target, WithIPCIDRSourceIP(true), WithIPCIDRNoResolve(true))
-	case C.SrcPortTypeString:
+	case C.RuleConfigSrcPort:
 		parsed, parseErr = NewPort(payload, target, PortTypeSrc)
-	case C.DstPortTypeString:
+	case C.RuleConfigDstPort:
 		parsed, parseErr = NewPort(payload, target, PortTypeDest)
-	case C.InboundPortTypeString:
+	case C.RuleConfigInboundPort:
 		parsed, parseErr = NewPort(payload, target, PortTypeInbound)
-	case C.ProcessNameTypeString:
+	case C.RuleConfigProcessName:
 		parsed, parseErr = NewProcess(payload, target, true)
-	case C.ProcessPathTypeString:
+	case C.RuleConfigProcessPath:
 		parsed, parseErr = NewProcess(payload, target, false)
-	case C.IPSetTypeString:
+	case C.RuleConfigIPSet:
 		noResolve := HasNoResolve(params)
 		parsed, parseErr = NewIPSet(payload, target, noResolve)
-	case C.MatchTypeString:
+	case C.RuleConfigMatch:
 		parsed = NewMatch(target)
-	case C.RuleSetTypeString, C.ScriptTypeString:
+	case C.RuleConfigRuleSet, C.RuleConfigScript:
 		parseErr = fmt.Errorf("unsupported rule type %s", tp)
 	default:
 		parseErr = fmt.Errorf("unsupported rule type %s", tp)

@@ -14,7 +14,7 @@ import (
 
 func TestParseRule(t *testing.T) {
 	type testCase struct {
-		tp            C.RuleTypeString
+		tp            C.RuleConfig
 		payload       string
 		target        string
 		params        []string
@@ -26,124 +26,124 @@ func TestParseRule(t *testing.T) {
 
 	testCases := []testCase{
 		{
-			tp:           C.DomainTypeString,
+			tp:           C.RuleConfigDomain,
 			payload:      "example.com",
 			target:       policy,
 			expectedRule: NewDomain("example.com", policy),
 		},
 		{
-			tp:           C.DomainSuffixTypeString,
+			tp:           C.RuleConfigDomainSuffix,
 			payload:      "example.com",
 			target:       policy,
 			expectedRule: NewDomainSuffix("example.com", policy),
 		},
 		{
-			tp:           C.DomainKeywordTypeString,
+			tp:           C.RuleConfigDomainKeyword,
 			payload:      "example.com",
 			target:       policy,
 			expectedRule: NewDomainKeyword("example.com", policy),
 		},
 		{
-			tp:      C.GeoIPTypeString,
+			tp:      C.RuleConfigGeoIP,
 			payload: "CN",
 			target:  policy, params: []string{noResolve},
 			expectedRule: NewGEOIP("CN", policy, true),
 		},
 		{
-			tp:           C.IPCIDRTypeString,
+			tp:           C.RuleConfigIPCIDR,
 			payload:      "127.0.0.0/8",
 			target:       policy,
 			expectedRule: lo.Must(NewIPCIDR("127.0.0.0/8", policy, WithIPCIDRNoResolve(false))),
 		},
 		{
-			tp:      C.IPCIDRTypeString,
+			tp:      C.RuleConfigIPCIDR,
 			payload: "127.0.0.0/8",
 			target:  policy, params: []string{noResolve},
 			expectedRule: lo.Must(NewIPCIDR("127.0.0.0/8", policy, WithIPCIDRNoResolve(true))),
 		},
 		{
-			tp:           C.IPCIDR6TypeString,
+			tp:           C.RuleConfigIPCIDR6,
 			payload:      "2001:db8::/32",
 			target:       policy,
 			expectedRule: lo.Must(NewIPCIDR("2001:db8::/32", policy, WithIPCIDRNoResolve(false))),
 		},
 		{
-			tp:      C.IPCIDR6TypeString,
+			tp:      C.RuleConfigIPCIDR6,
 			payload: "2001:db8::/32",
 			target:  policy, params: []string{noResolve},
 			expectedRule: lo.Must(NewIPCIDR("2001:db8::/32", policy, WithIPCIDRNoResolve(true))),
 		},
 		{
-			tp:           C.SrcIPCIDRTypeString,
+			tp:           C.RuleConfigSrcIPCIDR,
 			payload:      "192.168.1.201/32",
 			target:       policy,
 			expectedRule: lo.Must(NewIPCIDR("192.168.1.201/32", policy, WithIPCIDRSourceIP(true), WithIPCIDRNoResolve(true))),
 		},
 		{
-			tp:           C.SrcPortTypeString,
+			tp:           C.RuleConfigSrcPort,
 			payload:      "80",
 			target:       policy,
 			expectedRule: lo.Must(NewPort("80", policy, PortTypeSrc)),
 		},
 		{
-			tp:           C.DstPortTypeString,
+			tp:           C.RuleConfigDstPort,
 			payload:      "80",
 			target:       policy,
 			expectedRule: lo.Must(NewPort("80", policy, PortTypeDest)),
 		},
 		{
-			tp:           C.InboundPortTypeString,
+			tp:           C.RuleConfigInboundPort,
 			payload:      "80",
 			target:       policy,
 			expectedRule: lo.Must(NewPort("80", policy, PortTypeInbound)),
 		},
 		{
-			tp:           C.ProcessNameTypeString,
+			tp:           C.RuleConfigProcessName,
 			payload:      "example.exe",
 			target:       policy,
 			expectedRule: lo.Must(NewProcess("example.exe", policy, true)),
 		},
 		{
-			tp:           C.ProcessPathTypeString,
+			tp:           C.RuleConfigProcessPath,
 			payload:      "C:\\Program Files\\example.exe",
 			target:       policy,
 			expectedRule: lo.Must(NewProcess("C:\\Program Files\\example.exe", policy, false)),
 		},
 		{
-			tp:           C.ProcessPathTypeString,
+			tp:           C.RuleConfigProcessPath,
 			payload:      "/opt/example/example",
 			target:       policy,
 			expectedRule: lo.Must(NewProcess("/opt/example/example", policy, false)),
 		},
 		{
-			tp:           C.IPSetTypeString,
+			tp:           C.RuleConfigIPSet,
 			payload:      "example",
 			target:       policy,
 			expectedRule: lo.Must(NewIPSet("example", policy, true)),
 		},
 		{
-			tp:      C.IPSetTypeString,
+			tp:      C.RuleConfigIPSet,
 			payload: "example",
 			target:  policy, params: []string{noResolve},
 			expectedRule: lo.Must(NewIPSet("example", policy, false)),
 		},
 		{
-			tp:           C.MatchTypeString,
+			tp:           C.RuleConfigMatch,
 			payload:      "example",
 			target:       policy,
 			expectedRule: NewMatch(policy),
 		},
 		{
-			tp:            C.RuleSetTypeString,
+			tp:            C.RuleConfigRuleSet,
 			payload:       "example",
 			target:        policy,
-			expectedError: fmt.Errorf("unsupported rule type %s", C.RuleSetTypeString),
+			expectedError: fmt.Errorf("unsupported rule type %s", C.RuleConfigRuleSet),
 		},
 		{
-			tp:            C.ScriptTypeString,
+			tp:            C.RuleConfigScript,
 			payload:       "example",
 			target:        policy,
-			expectedError: fmt.Errorf("unsupported rule type %s", C.ScriptTypeString),
+			expectedError: fmt.Errorf("unsupported rule type %s", C.RuleConfigScript),
 		},
 		{
 			tp:            "UNKNOWN",

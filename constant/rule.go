@@ -1,26 +1,26 @@
 package constant
 
 const (
-	DomainTypeString        RuleTypeString = "DOMAIN"
-	DomainSuffixTypeString  RuleTypeString = "DOMAIN-SUFFIX"
-	DomainKeywordTypeString RuleTypeString = "DOMAIN-KEYWORD"
-	GeoIPTypeString         RuleTypeString = "GEOIP"
-	IPCIDRTypeString        RuleTypeString = "IP-CIDR"
-	IPCIDR6TypeString       RuleTypeString = "IP-CIDR6"
-	SrcIPCIDRTypeString     RuleTypeString = "SRC-IP-CIDR"
-	SrcPortTypeString       RuleTypeString = "SRC-PORT"
-	DstPortTypeString       RuleTypeString = "DST-PORT"
-	InboundPortTypeString   RuleTypeString = "INBOUND-PORT"
-	ProcessNameTypeString   RuleTypeString = "PROCESS-NAME"
-	ProcessPathTypeString   RuleTypeString = "PROCESS-PATH"
-	IPSetTypeString         RuleTypeString = "IPSET"
-	RuleSetTypeString       RuleTypeString = "RULE-SET"
-	ScriptTypeString        RuleTypeString = "SCRIPT"
-	MatchTypeString         RuleTypeString = "MATCH"
+	RuleConfigDomain        RuleConfig = "DOMAIN"
+	RuleConfigDomainSuffix  RuleConfig = "DOMAIN-SUFFIX"
+	RuleConfigDomainKeyword RuleConfig = "DOMAIN-KEYWORD"
+	RuleConfigGeoIP         RuleConfig = "GEOIP"
+	RuleConfigIPCIDR        RuleConfig = "IP-CIDR"
+	RuleConfigIPCIDR6       RuleConfig = "IP-CIDR6"
+	RuleConfigSrcIPCIDR     RuleConfig = "SRC-IP-CIDR"
+	RuleConfigSrcPort       RuleConfig = "SRC-PORT"
+	RuleConfigDstPort       RuleConfig = "DST-PORT"
+	RuleConfigInboundPort   RuleConfig = "INBOUND-PORT"
+	RuleConfigProcessName   RuleConfig = "PROCESS-NAME"
+	RuleConfigProcessPath   RuleConfig = "PROCESS-PATH"
+	RuleConfigIPSet         RuleConfig = "IPSET"
+	RuleConfigRuleSet       RuleConfig = "RULE-SET"
+	RuleConfigScript        RuleConfig = "SCRIPT"
+	RuleConfigMatch         RuleConfig = "MATCH"
 )
 
 // Rule Config Type String represents a rule type in configuration files.
-type RuleTypeString string
+type RuleConfig string
 
 // Rule Type
 const (
