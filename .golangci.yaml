@@ -22,3 +22,5 @@ linters-settings:
       - default
   staticcheck:
     go: '1.21'
+  exhaustive:
+    default-signifies-exhaustive: true
